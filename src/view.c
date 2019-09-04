@@ -141,9 +141,9 @@ const ux_menu_entry_t menu_transaction_info[] = {
 
 const ux_menu_entry_t menu_main[] = {
 #ifdef TESTING_ENABLED
-        {NULL, NULL, 0, &C_icon_app, "Tendermint", "Cosmos TEST!", 33, 12},
+        {NULL, NULL, 0, &C_icon_app, "Tendermint", "MXW TEST!", 33, 12},
 #else
-        {NULL, NULL, 0, &C_icon_app, "Tendermint", "Cosmos", 33, 12},
+        {NULL, NULL, 0, &C_icon_app, "Tendermint", "MXW", 33, 12},
 #endif
         {NULL, view_addr_choose_show, 0, NULL, "Show Address", NULL, 0, 0},
         {NULL, NULL, 0, NULL, "v"APPVERSION, NULL, 0, 0},
@@ -406,7 +406,7 @@ void view_addr_choose_show(unsigned int _) {
     view_addr_choose_data.status.mode = VIEW_ADDR_MODE_ACCOUNT;
     view_addr_choose_data.account = 0;
     view_addr_choose_data.index = 0;
-    strcpy(bech32_hrp, "cosmos");
+    strcpy(bech32_hrp, "mxw");
     ehAccept = show_idle_menu;
     ehReject = NULL;
 

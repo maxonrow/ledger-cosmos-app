@@ -118,12 +118,12 @@ bool extractBip32(uint8_t *depth, uint32_t path[10], uint32_t rx, uint32_t offse
     return 1;
 }
 
-bool validateCosmosPath(uint8_t depth, uint32_t path[10]) {
-    // Only paths in the form 44'/118'/{account}'/0/{index} are supported
+bool validateMxwPath(uint8_t depth, uint32_t *path) {
+    // Only paths in the form 44'/376'/{account}'/0/{index} are supported
     if (bip32_depth != 5) {
         return 0;
     }
-    if (path[0] != 0x8000002c || path[1] != 0x80000076 || path[3] != 0) {
+    if (path[0] != 0x8000002c || path[1] != 0x80000178 || path[3] != 0) {
         return 0;
     }
     return 1;
@@ -344,7 +344,7 @@ void handleApdu(volatile uint32_t *flags, volatile uint32_t *tx, uint32_t rx) {
                         THROW(APDU_CODE_DATA_INVALID);
                     }
 
-                    if (!validateCosmosPath(bip32_depth, bip32_path)) {
+                    if (!validateMxwPath(bip32_depth, bip32_path)) {
                         THROW(APDU_CODE_DATA_INVALID);
                     }
 
@@ -368,7 +368,7 @@ void handleApdu(volatile uint32_t *flags, volatile uint32_t *tx, uint32_t rx) {
                         THROW(APDU_CODE_DATA_INVALID);
                     }
 
-                    if (!validateCosmosPath(bip32_depth, bip32_path)) {
+                    if (!validateMxwPath(bip32_depth, bip32_path)) {
                         THROW(APDU_CODE_DATA_INVALID);
                     }
 

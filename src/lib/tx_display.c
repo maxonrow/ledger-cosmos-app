@@ -74,12 +74,6 @@ static const key_subst_t key_substitutions[NUM_KEY_SUBSTITUTIONS] = {
         {"fee/gas",                      "Gas"},
         {"msgs/type",                    "Type"},
 
-        // FIXME: Are these obsolete?? multisend?
-        {"msgs/inputs/address",          "Source Address"},
-        {"msgs/inputs/coins",            "Source Coins"},
-        {"msgs/outputs/address",         "Dest Address"},
-        {"msgs/outputs/coins",           "Dest Coins"},
-
         // MsgSend
         {"msgs/value/from_address",             "From"},
         {"msgs/value/to_address",               "To"},
@@ -89,39 +83,19 @@ static const key_subst_t key_substitutions[NUM_KEY_SUBSTITUTIONS] = {
         {"msgs/value/delegator_address", "Delegator"},
         {"msgs/value/validator_address", "Validator"},
 
-        // MsgUndelegate
-//        {"msgs/value/delegator_address", "Delegator"},
-//        {"msgs/value/validator_address", "Validator"},
 
         // MsgBeginRedelegate
 //        {"msgs/value/delegator_address", "Delegator"},
         {"msgs/value/validator_src_address", "Validator Source"},
         {"msgs/value/validator_dst_address", "Validator Dest"},
 
-        // MsgSubmitProposal
-        {"msgs/value/description",              "Description"},
-        {"msgs/value/initial_deposit/amount",  "Deposit Amount"},
-        {"msgs/value/initial_deposit/denom",   "Deposit Denom"},
-        {"msgs/value/proposal_type",            "Proposal"},
-        {"msgs/value/proposer",                 "Proposer"},
-        {"msgs/value/title",                    "Title"},
 
-        // MsgDeposit
-        {"msgs/value/depositer",                 "Sender"},
-        {"msgs/value/proposal_id",               "Proposal ID"},
-        {"msgs/value/amount",                    "Amount"},
+        //TODO: add kyc, alias, FungibleToken substitution
 
-        // MsgVote
-        {"msgs/value/voter",                    "Description"},
-//        {"msgs/value/proposal_id",              "Proposal ID"},
-        {"msgs/value/option",                   "Option"},
-
-        // MsgWithdrawDelegationReward
-//        {"msgs/value/delegator_address", "Delegator"},      // duplicated
-//        {"msgs/value/validator_address", "Validator"},      // duplicated
 };
 
 static const key_subst_t value_substitutions[NUM_VALUE_SUBSTITUTIONS] = {
+        // cosmos default TODO: removed unused key?
         {"cosmos-sdk/MsgSend", "Send"},
         {"cosmos-sdk/MsgDelegate", "Delegate"},
         {"cosmos-sdk/MsgUndelegate", "Undelegate"},
@@ -130,6 +104,16 @@ static const key_subst_t value_substitutions[NUM_VALUE_SUBSTITUTIONS] = {
         {"cosmos-sdk/MsgDeposit", "Deposit"},
         {"cosmos-sdk/MsgVote", "Vote"},
         {"cosmos-sdk/MsgWithdrawDelegationReward", "Withdraw Reward"},
+
+        // mxw
+        {"mxw/msgSend", "Send"},
+        {"kyc/whitelist", "Kyc WhiteList"},
+        {"kyc/revokeWhitelist", "Kyc Revoke"},
+        {"nameservice/setAliasStatus", "Set Alias"},
+        {"nameservice/createAlias", "Create Alias"},
+        {"token/createFungibleToken", "Create FungibleToken"},
+        {"token/setFungibleTokenStatus", "Set FungibleToken Status"},
+        {"token/setFungibleTokenAccountStatus", "Set FungibleToken Account Status"},
 };
 
 #define STRNCPY_S(DST, SRC, DST_SIZE) \
