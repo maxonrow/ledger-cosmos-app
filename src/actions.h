@@ -1,5 +1,6 @@
 /*******************************************************************************
-*   (c) ZondaX GmbH
+*   (c) 2016 Ledger
+*   (c) 2019 ZondaX GmbH
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -13,22 +14,16 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-
 #pragma once
 
-#include "json_parser.h"
 #include <stdint.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+uint8_t app_sign();
 
-/// Validate json transaction
-/// \param parsed_transacton
-/// \param transaction
-/// \return
-const char *json_validate(parsed_json_t *parsed_transaction, const char *transaction);
+void app_set_hrp(char *p);
 
-#ifdef __cplusplus
-}
-#endif
+uint8_t app_fill_address();
+
+void app_reply_address();
+
+void app_reply_error();
