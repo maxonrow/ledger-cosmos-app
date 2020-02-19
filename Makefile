@@ -23,9 +23,9 @@ include $(BOLOS_SDK)/Makefile.defines
 
 # Main app configuration
 APPNAME = "MXW"
-APPVERSION_M=0
-APPVERSION_N=5
-APPVERSION_P=2
+APPVERSION_M=1
+APPVERSION_N=0
+APPVERSION_P=0
 
 APP_LOAD_PARAMS = --appFlags 0x200 --delete $(COMMON_LOAD_PARAMS) --path "44'/376'"
 
