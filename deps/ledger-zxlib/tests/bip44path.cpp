@@ -1,5 +1,4 @@
 /*******************************************************************************
-*   (c) 2016 Ledger
 *   (c) 2018 ZondaX GmbH
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,28 +13,34 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-#pragma once
+#include <gmock/gmock.h>
+#include <zxmacros.h>
 
-#include <stdbool.h>
-#include "apdu_codes.h"
+namespace {
+    TEST(MACROS, bip44path1) {
+        uint32_t path[] = {44, 60, 0, 0, 1};
 
-#define CLA                             0x55
+        char buffer[100];
+        bip44_to_str(buffer, sizeof(buffer), path);
 
-#define OFFSET_CLA                      0
-#define OFFSET_INS                      1  //< Instruction offset
-#define OFFSET_P1                       2  //< P1
-#define OFFSET_P2                       3  //< P2
-#define OFFSET_DATA_LEN                 4  //< Data Length
-#define OFFSET_DATA                     5  //< Data offset
+        EXPECT_EQ("44/60/0/0/1", std::string(buffer));
+    }
 
-#define APDU_MIN_LENGTH                 5
+    TEST(MACROS, bip44path2) {
+        uint32_t path[] = {0x8000002c, 60, 0, 0, 1};
 
-#define OFFSET_PAYLOAD_TYPE             OFFSET_P1
+        char buffer[100];
+        bip44_to_str(buffer, sizeof(buffer), path);
 
-#define INS_GET_VERSION                 0
-#define INS_SIGN_SECP256K1              2
-#define INS_GET_ADDR_SECP256K1          4
+        EXPECT_EQ("44'/60/0/0/1", std::string(buffer));
+    }
 
-void app_init();
+    TEST(MACROS, bip44path3) {
+        uint32_t path[] = {0x8000002c, 60, 0, 0, 0x80000001};
 
-void app_main();
+        char buffer[100];
+        bip44_to_str(buffer, sizeof(buffer), path);
+
+        EXPECT_EQ("44'/60/0/0/1'", std::string(buffer));
+    }
+}
