@@ -66,6 +66,15 @@ static const key_subst_t value_substitutions[] = {
         {"cosmos-sdk/MsgSetWithdrawAddress",          "Withdraw Set Address"},
         {"cosmos-sdk/MsgMultiSend",                   "Multi Send"},
 
+        // mxw
+        {"mxw/msgSend", "Send"},
+        {"kyc/whitelist", "Kyc WhiteList"},
+        {"kyc/revokeWhitelist", "Kyc Revoke"},
+        {"nameservice/setAliasStatus", "Set Alias"},
+        {"nameservice/createAlias", "Create Alias"},
+        {"token/createFungibleToken", "Create FungibleToken"},
+        {"token/setFungibleTokenStatus", "Set FungibleToken Status"},
+        {"token/setFungibleTokenAccountStatus", "Set FungibleToken Account Status"},
 };
 
 parser_error_t tx_getToken(uint16_t token_index,

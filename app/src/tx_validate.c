@@ -136,15 +136,15 @@ parser_error_t tx_validate(parsed_json_t *json) {
         return parser_json_is_not_sorted;
     }
 
-    /* this transaction only appear on kyc */
-    if ((object_get_value(json,0,"from") != -1) &&
-    (object_get_value(json,0,"kycAddress") != -1) && 
-    (object_get_value(json,0,"nonce") != -1)) {
-        return parser_ok;
-    }    
-
     uint16_t token_index;
     parser_error_t err;
+
+    /* this transaction only appear on kyc */
+    if ((object_get_value(json, 0, "from", &token_index) != -1) &&
+    (object_get_value(json, 0, "kycAddress", &token_index) != -1) && 
+    (object_get_value(json, 0, "nonce", &token_index) != -1)) {
+        return parser_ok;
+    }    
 
     err = object_get_value(json, 0, "chain_id", &token_index);
     if (err != parser_ok)
